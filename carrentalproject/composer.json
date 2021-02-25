@@ -1,0 +1,12 @@
+{
+    "name": "teacher/day04slimfirst",
+    "require": {
+        "slim/slim": "3.12.3",
+        "sergeytsalkov/meekrodb": "^2.3",
+        "twig/twig": "^2.14",
+        "monolog/monolog": "^2.2",
+        "slim/twig-view": "^2.5",
+        "sendinblue/api-v3-sdk": "^6.4",
+        "phpmailer/phpmailer": "^5.2"
+    }
+}

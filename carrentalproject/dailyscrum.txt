@@ -1,0 +1,178 @@
+DAILY SCRUM
+----------
+2021-02-13
+
+Parinaz MalekTabrizi
+1-Done
+	Finished project proposal
+	Project setup
+2-To Do
+	Start Design
+	database setup
+
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	Finished project proposal
+	Project setup
+2-To Do
+	User registeration
+	database setup
+
+3- need assistance
+	--
+
+----------------------------------
+2021-02-15
+
+Parinaz MalekTabrizi
+1-Done
+	Finished user UI
+	database setup
+2-To Do
+	Start UI admin
+
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	Finished User registeration
+	database setup
+2-To Do
+	User Login , logout
+
+3- need assistance
+	--
+
+----------------------------------
+2021-02-16
+
+Parinaz MalekTabrizi
+1-Done
+	Finished admin UI
+	worked on user management by admin
+2-To Do
+	finish user management 
+	work on car management
+
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	worked on internal error
+	worked on password encryption
+	finished login
+2-To Do
+	logout
+	car details page
+3- need assistance
+	--
+------------------------------------
+2021-02-17
+
+Parinaz MalekTabrizi
+1-Done
+	Finished user management by admin
+2-To Do
+	work on car management
+
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	finished logout
+2-To Do
+	car details page
+	resert password
+3- need assistance
+	--
+
+------------------------------------
+
+2021-02-18
+
+Parinaz MalekTabrizi
+1-Done
+	work on car management
+2-To Do
+	finish car management
+	start rating adding
+
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	finishe reservation
+	car details page
+
+2-To Do
+	resert password
+3- need assistance
+	--
+
+------------------------------------
+
+2021-02-19
+
+Parinaz MalekTabrizi
+1-Done
+	finished car management
+	finished crud rate
+	finished confirm
+2-To Do
+	work on report admin
+	cars list display in UI
+	work on css
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	finished book car detail
+	worked on reset password
+	fixed some bugs
+	
+2-To Do
+	resert password
+	user history
+3- need assistance
+	--
+
+------------------------------------
+
+2021-02-20
+
+Parinaz MalekTabrizi
+1-Done
+	finished admin Dashboard
+	finished admin report
+	fixed bugs
+	finished all design 
+2-To Do
+	presentation and finalize the code to server
+3- need assistance
+	--
+
+Zahra Arablou
+1-Done
+	finished payment by paypal
+	finished database Entery
+	finished Cancel booking
+	
+2-To Do
+	presentation and finalize the code to server
+
+3- need assistance
+	--
+
+
+
+
+
+

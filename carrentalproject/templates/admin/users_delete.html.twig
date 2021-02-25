@@ -1,0 +1,47 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}User Delete{% endblock%}
+{% block bodytitle %}User Information{% endblock %}
+{% block content %}
+        <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i>Id</th>
+                    <th><i class="icon_profile"></i>First Name</th>
+                    <th><i class="icon_profile"></i>Last Name</th>
+                    <th><i class="icon_mail_alt"></i>Email</th>
+                    <th><i class="icon_profile"></i>Username</th>
+                    <th><i class="icon_mobile"></i>Phone number</th>
+                    <th><i class="icon_calendar"></i>Gender</th>
+                    <th><i class="icon_calendar"></i>JoinTime</th>
+                    <th><i class="icon_pin_alt"></i>Street</th>
+                    <th><i class="icon_pin_alt"></i>City</th>
+                    <th><i class="icon_pin_alt"></i>Province</th>
+                    <th><i class="icon_pin_alt"></i>Postal Code</th>
+                    <th><i class="icon_calendar"></i>Role Type</th>
+                  </tr>
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.phoneNumber}}</td>
+                        <td>{{user.gender}}</td>
+                        <td>{{user.joinTime}}</td>
+                        <td>{{user.street}}</td>
+                        <td>{{user.city}}</td>
+                        <td>{{user.province}}</td>
+                        <td>{{user.postalCode}}</td>
+                        <td>{{user.roleType}}</td>
+                    </tr>
+            </tbody>
+        </table>
+<section class="container">
+ <form method="post">
+          <p>Please confirm this action. It is irreversible</p>
+          <button type="submit" class="btn btn-danger btn-lg btn-block" >Yes, delete the user</button>
+        <a href="/admin/user/list" class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;">Cancel - go back to the list</a>
+</form>
+</section>
+
+{% endblock %}

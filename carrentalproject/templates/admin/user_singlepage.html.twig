@@ -1,0 +1,27 @@
+{% if userList %}
+    {% for user in userList %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.joinTime}}</td>
+            <td>{{user.street}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.province}}</td>
+            <td>{{user.postalCode}}</td>
+            <td>{{user.roleType}}</td>
+            <td>
+            <div class="btn-group">
+                <a class="btn btn-warning" href="/admin/user/edit/{{user.id}}"><i class="fas fa-pen"></i></a>
+                <a class="btn btn-danger" href="/admin/user/delete/{{user.id}}"><i class="fas fa-trash-alt"></i></a>
+            </div>
+            </td>
+        </tr>
+    {% endfor %}            
+{% endif %}  
+
+

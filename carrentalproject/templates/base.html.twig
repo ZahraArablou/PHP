@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}{% endblock %}  - Car Rental</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link href="/styles/style.css" rel="stylesheet">
+  <link href="/styles/icofont/icofont.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/style.css?v=<?php echo time(); ?>">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   {% block stylesheet %}{% endblock %}
+  {% block head %}{% endblock %}
+
+</head>
+<body>
+ {% if flashMessage %}
+         <div class="alert alert-warning alert-dismissible " role="info">
+    <strong>{{flashMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    {% endif %}
+        
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex">
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="{{path_for('/')}}"><img src = "/images/logo.png" alt="Logo" class="img-fluid"/></a></h1>
+      </div>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li {% if current == 'home' %}class="active"{% endif %} ><a href="{{path_for('/')}}">Home</a></li>
+          <li  {% if current == 'car' %}class="active"{% endif %}><a href="/carList">Cars</a></li>
+          <li {% if current == 'contact' %}class="active"{% endif %}><a href="{{path_for('/contact')}}">Contact</a></li>
+          <li>
+          {% if userSession %}
+            <li><a href="/logout">Logout</a></li>
+					  {% if userSession.roleType == 'admin' %}
+              <li class ="get-started ">
+							<span><a href="/admin">Admin Dashboard</a></span>
+              </li>
+            {%  else %}
+             <li class ="get-started ">
+							<span><a href="/userHistory">User History</a></span>
+              </li>
+              {% endif %}
+						{% else %}
+            <li class="drop-down"><a href="#">GetStarted</a>
+            <ul>
+              <li><a href="{{path_for('/login')}}">Sign in</a></li>
+              <li><a href="/register">Register</a></li>
+            </ul>
+          <li>
+          {% endif %}	
+        </ul>
+      </nav>
+    </div>
+  </header>
+{% block hero %}{% endblock %}
+ 
+<main id="main">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            {% block greensectiontitle %}{% endblock %}
+            {% block greensection %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+{% block about %}{% endblock %}
+    <section id="services" class="services  section-bg ">
+      <div class="container">
+        <div class="section-title pt-5">
+          <h2>{% block bodytitle %}{% endblock %}</h2>
+         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="icon-box">
+              {% block body %}
+              
+              {% endblock %}
+              
+            </div>
+          </div>
+      </div>
+    </section>
+</main>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>Car Rental</h3>
+            <p><img src = "/images/logo.png" alt="Logo" class="img-fluid"/></p>
+          </div>
+
+
+          <div class="col-lg-6 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              21 275 Lakeshore Road <br>
+              Sainte-Anne-de-Bellevue, Québec<br>
+              Canada <br>
+              <strong>Phone:</strong> 514-457-6610<br>
+              <strong>Email:</strong> conted@johnabbott.qc.ca<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+              <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+              <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="icofont-skype"></i></a>
+              <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Designed By</h4>
+            <p>Developer team:</p>
+            <ul class="footer-links mb-0">
+              <li>
+                  Zahra Arablou
+              </li>
+              <li>
+                  Parinaz Malektabrizi
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Car Rental</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <script src="/js/main.js"></script>
+  {% block js %}
+ {% endblock %}
+
+</body>
+
+</html>

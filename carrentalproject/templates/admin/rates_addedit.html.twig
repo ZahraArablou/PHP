@@ -1,0 +1,25 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}Rate Edit{% endblock%}
+{% block bodytitle %}Rate Information{% endblock %}
+{% block content %}
+
+<section class="container">
+ <form method="post" enctype="multipart/form-data">
+    <div class="form-row">
+    <div class="form-group col-md-12">
+    <label for="make">Daily Rate</label>
+    <input type="text" {% if(errorList['byDay']) %} class="form-control is-invalid" {% else %} class="form-control"{% endif %} class="form-control is-invalid" id="byDay" name="byDay" value ="{{ rate.byDay }}">
+    <div class="invalid-feedback">{% if(errorList['byDay']) %} {{errorList['byDay']}} {% endif %}</div>
+    </div>
+    <div class="form-group col-md-12">
+    <label for="byKilometer">Kilometer Rate</label>
+    <input type="text" {% if(errorList['byKilometer']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="byKilometer" id="byKilometer" value ="{{ rate.byKilometer }}">
+    <div class="invalid-feedback">{% if(errorList['byKilometer']) %} {{errorList['byKilometer']}} {% endif %}</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;">{% if op == 'edit' %} Update Car Information {% else %} Submit Car Information {% endif %} </button>
+</form>
+</section>
+
+
+{% endblock %}

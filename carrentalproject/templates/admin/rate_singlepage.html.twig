@@ -1,0 +1,18 @@
+{% if rateList %}
+    {% for rate in rateList %}
+        <tr>
+            <td>{{rate.id}}</td>
+            <td>{{rate.carId}}</td>
+            <td>{{rate.byDay}}</td>
+            <td>{{rate.byKilometer}}</td>
+            <td>
+            <div class="btn-group">
+                <a class="btn btn-warning" href="/admin/rate/edit/{{rate.id}}"><i class="fas fa-pen"></i></a>
+                <a class="btn btn-danger" href="/admin/rate/delete/{{rate.id}}"><i class="fas fa-trash-alt"></i></a>
+            </div>
+            </td>
+        </tr>
+    {% endfor %}            
+{% endif %}     
+
+

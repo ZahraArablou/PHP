@@ -1,0 +1,79 @@
+{% extends "base.html.twig" %}
+{% block title %}Home page{% endblock %} 
+{% block hero %}
+   {% if flashMessage %}
+            <div class="flashMessage">{{flashMessage}}</div>
+          {% endif %}
+
+    <div  id="hero">
+    <div class="hero-container">
+    <h1>Welcome to Car Rental System</h1>
+     {% if userSession %}
+    <a href="/availableCars"><input class="btn btn-lg btn-success" style="background: #a6ca63;" type="submit" name="booking" value="Find a car"></input></a> 
+ {% else %}
+      <p class = "text-white" >Please Login first</p>
+      <a href="/login"><input class="btn btn-lg btn-success" style="background: #a6ca63;"  type="submit" name="booking" value="Find a car"></input></a>
+      {% endif %}
+       </div>
+    </div>
+{% endblock hero %} 
+{% block greensectiontitle %}
+    <h2>Home Page</h2>
+{% endblock greensectiontitle %}
+{% block greensection %}
+{% endblock greensection %}
+{% block about %}
+    <section id="blog" class="blog" >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch">
+            <article class="entry">
+              <div class="entry-img">
+                <img src="images/5.jpg" alt="" class="img-fluid">
+              </div>
+              <h2 class="entry-title">
+                New and Quality Vehicles
+              </h2>
+              <div class="entry-content">
+                <p>We constantly update our fleet with new vehicles so that you can enjoy your rental car and travel safely</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch">
+            <article class="entry">
+              <div class="entry-img">
+                <img src="images/2.jpg" alt="" class="img-fluid">
+              </div>
+              <h2 class="entry-title">Insurance Replacement</h2>
+              <div class="entry-content">
+                <p>An accident is never enjoyable. If your car is in an accident, we will deliver a replacement vehicle so that you can go onto your daily activities without delay.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch">
+            <article class="entry">
+              <div class="entry-img">
+                <img src="images/3.jpg" alt="" class="img-fluid">
+              </div>
+              <h2 class="entry-title">24 Hours Support</h2>
+              <div class="entry-content">
+                <p>An accident is never enjoyable! Our team is available 24/7 for any emergencies that may arise. A rental car will be delivered to where you need it, when you need it.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+
+{% endblock  about %}
+
+{% block bodytitle %}
+          About Us
+{% endblock bodytitle%}
+
+{% block body %}
+    <p>A full fleet of vehicles to fit your needs! In town for a few days or planning your next road trip, we have the car for any occasion. Pickup service from Montreal International Airport is also available. Had an accident? Let us help you with a replacement vehicle while your car is being repaired. A car can be delivered to you within a short period of time! With 24/7 car delivery service and direct billing, you can have ease of mind that we will deal with your insurance so that you can go about your business right away! We specialize in insurance replacement and corporate car and truck rentals.</p>
+{% endblock body %}

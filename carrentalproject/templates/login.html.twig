@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block title %}Login
+{% endblock %}
+{% block greensectiontitle %}<h2>Login</h2>
+{% endblock greensectiontitle %}
+
+{% block body %} 
+<form method="post">
+  <div class="form-group">
+    <label for="username">User Name</label>
+    <input type="text" class="form-control" id="username"  name="username" value={{ v.username }}>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password">
+  </div>
+  <div class="form-group">
+  <div>{% if error %} <p style="color:red" >usename or password is not correct</p> {% endif %}</div>
+  <p><a href="#">Forgot Password</a></p>
+  <p>Not a Member?<a href="/register">Sign Up Now!</a></p>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+
+</form>
+
+
+{% endblock body %}
+

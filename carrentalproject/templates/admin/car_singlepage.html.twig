@@ -1,0 +1,26 @@
+{% if carList %}
+    {% for car in carList %}
+        <tr>
+            <td>{{car.id}}</td>
+            <td>{{car.make}}</td>
+            <td>{{car.modelName}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{% if car.imageFilePath %}<img src="/uploads/{{car.imageFilePath}}" width=150px />{% endif %}</td>
+            <td>{{car.availability}}</td>
+            <td>
+            <div class="btn-group">
+                <a class="btn btn-warning" href="/admin/car/edit/{{car.id}}"><i class="fas fa-pen"></i></a>
+                <a class="btn btn-danger" href="/admin/car/delete/{{car.id}}"><i class="fas fa-trash-alt"></i></a>
+            </div>
+            </td>
+            <td>
+            <div>
+                <a class="btn btn-info" href="/admin/rate/add/{{car.id}}"><i class="fas fa-star"></i></a>
+            </div>
+            </td>
+
+        </tr>
+    {% endfor %}            
+{% endif %}     
+
+

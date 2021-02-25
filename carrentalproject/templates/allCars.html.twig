@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block title %}Available Cars List
+{% endblock %}
+{% block body %}
+{% if errorList %}
+	<ul>
+		{% for error in errorList %}
+			<li class="errorMessage">{{ error }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+<div>For booking the car<a href="/availableCars">click here </a>
+
+	<table>
+
+			{% for a in list %}
+
+				<tr>
+				    	<td><img src="{{a.imageFilePath}}" width="150" height="150"></td>
+						<td>{{a.make}}</td>
+						<td>{{a.modelName}}</td>
+						<td>{{a.modelYear}}</td>
+
+					</tr>
+			</td>
+		</tr>
+
+{% endfor %}
+</table>
+{% endblock body %}

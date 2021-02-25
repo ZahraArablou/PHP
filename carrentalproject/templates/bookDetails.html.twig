@@ -1,0 +1,156 @@
+{% extends "base.html.twig" %}
+{% block title %}Book Details
+{% endblock %}
+{% block greensectiontitle %}
+<h2>Book Details</h2>
+{% endblock greensectiontitle %}
+{% block head %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		 $(document).ready(function () {
+         $('input[name=km]').keyup(function () {
+         var km = $(this).val();
+         km = encodeURIComponent(km);
+         $('#kmTooLowMsg').load("/iskmtoolow/" + km);
+        });
+        });
+	</script>
+	<script>
+	  	$(document).ready(function () {
+         $('input[name=km]').keyup(function () {
+        var km = $(this).val();
+        km = encodeURIComponent(km);
+        $('#price').load("/priceCalculate/" + km + "/" + {{ r.byKilometer }});
+      });
+});
+	</script>
+	
+	<script type="text/javascript">
+		function clickOnbyDay() {
+
+               document.getElementById("text1").style.visibility = 'hidden';
+               document.getElementById("kilometer").style.visibility = 'hidden';
+               document.getElementById("kilometer").value = 0;
+              document.getElementById("kmTooLowMsg").style.visibility = 'hidden';
+              document.getElementById("price").style.visibility = 'visible';
+             // document.getElementById('confirm').disabled = true;
+             $('#price').load("/priceCalculatebyDay/"+ {{ c.id }});
+}	</script>
+	<script type="text/javascript">
+	        function clickOnKm() {
+
+           document.getElementById("text1").style.visibility = 'visible';
+           document.getElementById("kilometer").style.visibility = 'visible';
+           document.getElementById("kmTooLowMsg").style.visibility = 'visible';
+           document.getElementById('confirm').disabled = true;
+           document.getElementById("price").innerHTML = "";
+
+       }
+	</script>
+{% endblock head %}
+
+{% block body %}
+<section>
+	<div class="row">
+    	<div class="col-md-5 form-group">
+			<div>pickup Date:&nbsp;<strong>{{v.pickupDate}}</strong></div>
+		</div>
+	<!--<div class="col-md-4 form-group"></div>-->
+		<div class="col-md-3 form-group">
+			<div>return Date:&nbsp;<strong>{{v.returnDate}}</strong></div>
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-md-5 form-group"></div>
+		<div class="col-md-2 form-group">
+			<a href="/availableCars"><input class="btn btn-md btn-success" style="background: #a6ca63;" type="submit" name="booking" value="change date"></input></a>
+		</div>
+		<div class="col-md-5 form-group"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<table class="table" style="width:50%">
+				<tr>
+    				<td><img src="/uploads/{{c.imageFilePath}}" width="154" height="98" class="img-responsive"></td>
+				<td>{{c.make}}</td>
+				<td>{{c.modelName}}</td>
+				<td>{{c.modelYear}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<hr>
+	{% if error %}
+		<ul>
+			{% for e in error %}
+			<li class="errorMessage">{{ e }}</li>
+			{% endfor %}
+		</ul>
+
+	{% endif %}
+	<form method="post">
+		<div class="row">
+			<div class="col-md-12 form-group">
+				<p>choose the rate:</p>
+				{% if rate=="" or  rate=="day" %}
+				<input type="radio" id="byDay" name="rate" value="day" onclick="clickOnbyDay()" checked="ckeched">
+				<label for="byDay">{{ r.byDay}}$ per day</label><br>
+				<input type="radio" id="byKM" name="rate" value="km" onclick="clickOnKm()">
+				<label for="byKM">{{ r.byKilometer}}$ per kilometer</label></br>
+				{% endif %}
+				{% if rate=="km" %}
+				<input type="radio" id="byDay" name="rate" onclick="clickOnbyDay()" value="day">
+				<label for="byDay">{{ r.byDay}}$ per day</label><br>
+				<input type="radio" id="byKM" name="rate" value="km" onclick="clickOnKm()" checked="ckeched">
+				<label for="byKM">{{ r.byKilometer}}$ per kilometer</label></br>
+				<div id="text1">anticipated kilometer:</div>
+				<input type='text' id="kilometer"  name="km" value={{ km }}>
+				{% endif %}
+				<div id="text1" style="visibility: hidden">anticipated kilometer:</div>
+				<input type='text' id="kilometer" style="visibility: hidden" name="km" value={{ km }}>
+				<span id="kmTooLowMsg"></span><br>
+				<div></div>
+				<div>Price is:&emsp;<span id="price" class="inline"><strong>{{price}}</span><span>$</strong></span></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 form-group"></div>
+			<div class="col-md-2 form-group">
+				<input type="submit"  class="btn btn-md btn-success" style="background: #a6ca63;" value="Reserve my rental car">
+			</div>
+			<div class="col-md-5 form-group"></div>
+		</div>
+	</form>
+	<hr>
+	<div id="showsAfterReserve" styel="visibility:hidden">
+	{% if flag %}
+	<div class="row">
+    	<div class="col-md-6 form-group">
+			<div>First name:&emsp;<strong>{{u.firstName}}</strong></div>
+			<div>Last name:&emsp;<strong>{{u.lastName}}</strong></div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div>Booking from<strong> {{v.pickupDate}}</strong> to<strong> {{v.returnDate}}</strong></div>
+			<div>number of days:&emsp;<strong>{{numberOfDay}}</strong></div>
+			{% if rate=="km" %}
+			<div>kilometer:{{km}}</div>
+			<div>rate by kilometer:&emsp;<strong>{{r.byKilometer}}$</strong></div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row">
+    	<div class="col-md-12 form-group">
+		<div>Total Price:&emsp;	<strong>{{price}}$	<strong></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 form-group"></div>
+		<div class="col-md-2 form-group">
+			<a href="/bookSuccessfull/{{u.id}}"><input class="btn btn-md btn-success" style="background: #a6ca63;" type="submit" id="confirm" name="booking" value="Confirm reservation"></input></a>
+		</div>
+		<div class="col-md-5 form-group"></div>
+	</div>
+	{% endif %}
+</section>
+{% endblock body %}

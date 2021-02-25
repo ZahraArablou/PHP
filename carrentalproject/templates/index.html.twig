@@ -1,0 +1,21 @@
+{% extends "master.html.twig" %}
+{% block content %}
+<h2>Search Car Deals </h2>
+{% if errorList %}
+    <ul>
+    {% for error in errorList %}
+        <li class="errorMessage">{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+
+      Pick-up date: <input type="date" id="pickupDate" name="pickupDate" value={{ v.pickupDate}}><br>
+      Drop-off date <input type="date" id="returnDate" name="returnDate" value={{ v.returnDate }}><br>
+      <input type="submit" value="Find a car""></br>
+      </form><br>
+      <p><a href="/registeruser"> Create Account </a></p>
+     
+{% endblock content %}
+

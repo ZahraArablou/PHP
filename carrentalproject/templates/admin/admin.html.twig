@@ -1,0 +1,43 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block head %} 
+<script>
+     $(document).ready(function() {
+   var calendar = $('#calendar').fullCalendar({
+    editable:true,
+    header:{
+     left:'prev,next today',
+     center:'title',
+     right:'month,agendaWeek,agendaDay'
+    },
+    events: 'load.php',
+    selectable:true,
+    selectHelper:true,
+
+   });
+  });
+</script>
+    
+{% endblock %}
+
+{% block buttonAdd %}
+    <h1 class="h2">Calendar view</h1>
+{% endblock %}
+{% block table %}
+<section class="container">
+<div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 portlets">
+            <div class="panel panel-default">
+             <br><br><br>
+              <div class="panel-body">
+
+                <div id="calendar"></div>
+
+              </div>
+            </div>
+
+          </div>
+</section>
+{% endblock %}

@@ -1,0 +1,93 @@
+$app->get('/registeruser', function ($request, $response, $args) {
+   
+    return $this->view->render($response, 'registeruser.html.twig');
+});
+
+
+//STATE2&3:RECIEVING SUBMISSION
+$app->post('/registeruser', function ($request, $response, $args) {
+    $firstName = $request->getParam('firstName');
+    $lastName = $request->getParam('lastName');
+    $gender = $request->getParam('gender');
+    $email = $request->getParam('email');
+    $phoneNumber = $request->getParam('phoneNumber');
+    $street = $request->getParam('street');
+    $city = $request->getParam('city');
+    $province = $request->getParam('province');
+    $postalCode = $request->getParam('postalCode');
+    $username = $request->getParam('username');
+    $pass1 = $request->getParam('pass1');
+    $pass2 = $request->getParam('pass2');
+
+    $errorList = [];
+    
+    if (preg_match('/^[a-zA-Z0-9 ,\.-]{2,50}$/', $firstName) !== 1) {
+        $errorList[] = "first name must be 2-50 characters long made up of letters, digits, space, comma, dot, dash";
+    }
+    if (preg_match('/^[a-zA-Z0-9 ,\.-]{2,50}$/', $lastName) !== 1) {
+        $errorList[] = "last name must be 2-50 characters long made up of letters, digits, space, comma, dot, dash";
+    }
+   
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $errorList[] = "Email doesnot look valid";
+    }else{ //if email has been already registered
+        $user = DB::queryFirstRow('SELECT * FROM users WHERE email=%s', $email);
+
+        if ($user) {
+            $errorList[] = "Email has been already registered";
+            }
+      
+    }
+    if (!is_numeric($phoneNumber) || strlen($phoneNumber)!=10) {
+        $errorList[] = "phone number must be 10 digit number";
+    }
+    if (preg_match('/^[a-zA-Z0-9 ,\.-]{2,50}$/', $street) !== 1) {
+        $errorList[] = "street must be 2-50 characters long made up of letters, digits, space, comma, dot, dash";
+    }
+    if (preg_match('/^[a-zA-Z0-9 ,\.-]{2,50}$/', $city) !== 1) {
+        $errorList[] = "city must be 2-50 characters long made up of letters, digits, space, comma, dot, dash";
+    }
+    if (preg_match('/^[a-zA-Z0-9 ,\.-]{2,50}$/', $province) !== 1) {
+        $errorList[] = "province must be 2-50 characters long made up of letters, digits, space, comma, dot, dash";
+    }
+    if (preg_match('/^[a-zA-Z0-9]{4,20}$/', $username) != 1) {
+        $errorList[] = "Username mustbe 4-20 characters long made up of lower-case characters and numbers";
+       
+    } else { //but is this username already in use?
+          $user = DB::queryFirstRow('SELECT * FROM users WHERE username=%s', $username);
+    
+            if ($user) {
+                $errorList[] = "this username already in use";
+                }
+          
+        }
+    
+    if ($pass1 != $pass2) {
+        $errorList[] = "Passwords do not match";
+        $pass1="";$pass2="";
+    } else {
+        if (
+            strlen($pass1) < 6 || strlen($pass2) > 8
+            || (preg_match("/[A-Z]/", $pass1) == FALSE)
+            || (preg_match("/[a-z]/", $pass1) == FALSE)
+            || (preg_match("/[0-9]/", $pass1) == FALSE)
+        ) {
+            $errorList[] = "Password must be 6-8 characters long,"
+                . "With at least one uppercase , one lowercase, and one digit in it";
+        }
+    }
+      
+
+ $valuesList = ['firstName' => $firstName, 'lastName' => $lastName, 
+              'gender' => $gender, 'email' => $email,
+              'phoneNumber'=> $phoneNumber ,'street' => $street,
+              'city' => $city,'province' => $province,
+              'postalCode' => $postalCode,'username' => $username,'password' => $pass1];
+    if ($errorList) { //State2: errors
+       
+        return $this->view->render($response, 'registeruser.html.twig', ['errorList' => $errorList, 'v' => $valuesList]);
+    } else { //state 3:success
+        DB::insert('users',$valuesList);
+        //return $this->view->render($response, 'newauction_success.html.twig');    }
+    }
+});

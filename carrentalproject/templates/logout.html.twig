@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Logout successful{% endblock %}
+{% block greensectiontitle %}
+<h2>Logout</h2>
+{% endblock greensectiontitle %}
+{% block head %}
+    <script>
+    // redirect with JavaScript
+    setTimeout(function () {
+       window.location.href = "/"; // destination
+    }, 5000); //will call the function after 5 secs.
+    </script>
+{% endblock %}
+
+{% block body %}
+    <p>Logout successful</p>
+    <p><a href="/">Click to continue</a>. You will be automatically redirected in 5 seconds.</p>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html.twig" %}
+{% block title %}User History {% endblock %}
+{% block greensectiontitle %}
+<h2>User History</h2>
+{% endblock greensectiontitle %}
+{% block body %}
+{% if errorList %}
+	<ul>
+		{% for error in errorList %}
+			<li class="errorMessage">{{ error }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+        <div class="row">
+        	<div class="col-lg-5">
+				<p><strong>Name: </strong>{{u.firstName }}  &nbsp; {{u.lastName}}</p>
+				<p><strong>Email: </strong>{{u.email}}</p>
+			</div>
+			<div class="col-lg-7">
+				<p><strong>Address: </strong>{{u.street}},{{u.city}},{{u.province}},{{u.postalCode}}</p>
+				<p><strong>Phone: </strong>{{u.phoneNumber}}</p>
+			</div>
+		</div>
+        <div class="row">
+			<div style="margin-bottom:20px" class="col-lg-12">
+			<a href="/user_editprofile"><input class="btn btn-success" style="background: #a6ca63;" id="EditProfile" type="submit" name="submit" value="Edit Profile"></input></a>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+				<th scope="col">photo</th>
+				<th scope="col">Make</th>
+				<th scope="col">Model Name</th>
+				<th scope="col">Model Year</th>
+				<th scope="col">Pickup Date</th>
+				<th scope="col">Return Date</th>
+				<th scope="col">Payment Amount</th>
+				<th scope="col">Booking Status</th>
+				<th scope="col">payment</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for book in bookedlist %}
+				<tr>
+				<td><img src="/uploads/{{book.imageFilePath}}" width="70" height="50" class="img-responsive"></td>
+				<td>{{book.make}}{{book.id}}</td>
+				<td>{{book.modelName}}</td>
+				<td>{{book.modelYear}}</td>
+				<td>{{book.pickupDate}}</td>
+				<td>{{book.returnDate}}</td>
+				<td>{{book.paymentAmount}}$</td>
+				<td>{{book.bookingStatus}}</td>
+				<td>
+				{% if book.isPaid=='no' %}
+						     {% if (book.bookingStatus=='pending') or (book.bookingStatus=='accepted') %}
+						           <a class="btn btn-block btn-success" style="background: #a6ca63;" href="/book_cancel/{{book.id}}">Cancel</a>
+							{% endif %}
+                           	{% if (book.bookingStatus=='rejected') or (book.bookingStatus=='canceled') %} NA
+	                        {% endif %}
+	                         {% if book.isPaid=='yes' %}Paid{% endif %}
+                    {% endif %}
+					{% if book.isPaid=='no' %}
+			    		{% if book.bookingStatus=='accepted' %}
+
+							<div id="paypal-payment-buttun"><div>
+
+							<div style="display:none" >
+								    <input type="text" name="task" value={{book.paymentAmount}} styel="height:0px"><br>
+									<input type="text" name="bookid" value={{book.id}} styel="height:0px"><br> 
+							</div>
+                        {% endif %}
+					
+					{% else %}
+                           Paid
+                    {% endif %}
+
+				 </td>		 
+            	</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+  {% block js %}
+  
+<script src="https://www.paypal.com/sdk/js?client-id=Aev0xzXzAITIi34bQrdt86vsWStXEBLL7GwjefVu25GE_dZCeeeV5CgaUUBkqg99nMK6YOvgjK-_U_xp&disable-funding=credit,card"></script>
+<script>
+paypal.Buttons({
+    style : {
+		size: 'responsive',
+        color: 'blue',
+        shape: 'pill',
+    },
+	  createOrder: function (data, actions) {
+        return actions.order.create({
+            purchase_units : [{
+                amount: {
+                    value: $("input[name=task]").val()
+                }
+            }]
+        });
+    },
+	onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+            console.log(details)
+		     window.location.replace("/paymentprocess/"+$("input[name=bookid]").val())
+	      })
+    }
+}).render('#paypal-payment-buttun');
+</script>
+
+ {% endblock %}
+
+{% endblock body %}

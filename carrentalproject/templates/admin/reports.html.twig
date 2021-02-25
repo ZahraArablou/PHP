@@ -1,0 +1,57 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}reports{% endblock %}
+{% block buttonAdd %}
+    <h1 class="h2">Reports</h1>
+{% endblock %}
+{% block table %}
+    <section class="container">
+        <div>   
+        {% if carAmountList %}
+            {% for amount in carAmountList %}     
+                <input class="amount" type="hidden" value="{{amount}}" />
+            {% endfor %}            
+        {% endif %}
+        {% if carIdList %}
+            {% for carId in carIdList %}     
+                <input class="carId" type="hidden" value="{{carId}}" />
+            {% endfor %}            
+        {% endif %}
+        {% if carCountList %}
+            {% for carCount in carCountList %}     
+                <input class="carCount" type="hidden" value="{{carCount}}" />
+            {% endfor %}            
+        {% endif %} 
+        {% if carMakeList %}
+            {% for make in carMakeList %}     
+                <input class="make" type="hidden" value="{{make}}" />
+            {% endfor %}            
+        {% endif %}  
+            <div class="row">
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Cars Count by Make
+                        </header>
+                        <div class="panel-body text-center">
+                            <canvas class="my-4 w-100" id="pieChart" width="700" height="300"></canvas>  
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Amount earned by each car
+                        </header>
+                        <div class="panel-body text-center">
+                            <canvas class="my-4 w-100" id="barChart" width="700" height="300"></canvas>  
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="/js/myCharts.js"></script>
+{% endblock %}

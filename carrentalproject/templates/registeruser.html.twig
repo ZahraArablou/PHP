@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+{% block title %} New User {% endblock %}
+{% block body %}
+	{% if errorList %}
+		<ul>
+			{% for error in errorList %}
+				<li class="errorMessage">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+ 	<h1>
+		New User</h1>
+        
+	<form method="post" enctype="multipart/form-data">
+		First Name:<input type="text" name="firstName" value={{v.firstName}}><br>
+		Last Name:<input type="text" name="lastName" value={{v.lastName}}><br>
+		Gender:<select name="gender" id="gender"><br>
+			<option value="female">female</option>
+			<option value="male">male</option>
+			<option value="others">others</option>
+		</select><br>
+		Email:<input type="email" name="email" value={{ v.email }}><br>
+		Phone number:<input type="text" name="phoneNumber" value={{v.phoneNumber}}><br>
+		Address:<br>
+		street:<input type="text" name="street" value={{ v.street }}><br>
+		city:<input type="text" name="city" value={{ v.city }}><br>
+		province:<input type="text" name="province" value={{ v.province }}><br>
+		postal code:<input type="text" name="postalCode" value={{ v.postalCode }}><br>
+        Username:<input type="text" name="username" value={{ v.username }}><br>
+		  Password: <input name="pass1" type="password" value={{ v.password }} ><br>
+        password(repeated): <input name="pass2" type="password" value={{ v.password }}><br>
+	</br>
+
+	<input type="submit" value="submit" "></br>
+    </form>
+
+    {% endblock body %}

@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+{% block title %}Available Cars List
+{% endblock %}
+
+{% block greensectiontitle %}
+<h2>Available Cars</h2>
+{% endblock greensectiontitle %}
+{% block body %}
+<section>
+{% if errorList %}
+	<ul>
+		{% for error in errorList %}
+			<li class="errorMessage">{{ error }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+	<form method="post">
+		<div class="form-row">
+			<div class="col-md-6 form-group">
+				<div class="form-group">
+					<label  for="pickupDate" class="text-dark">Pickup Date</label>
+					<input type="date" class="form-control" id="pickupDate" name="pickupDate" value={{ v.pickupDate }}>
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+				<div class="form-group">
+					<label for="returnDate"class="text-dark">Drop-off date</label>
+					<input type="date" class="form-control" id="returnDate" name="returnDate" value={{ v.returnDate }}>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 form-group"></div>
+			<div class="col-md-2 form-group">
+				<button type="submit" class="btn btn-md btn-success" style="background: #a6ca63;">search Cars</button>
+			</div>
+			<div class="col-md-5 form-group"></div>
+		</div>
+	</form>
+	{% if flag %}
+
+	<table class="table" >{% for a in list %}
+		<form method="get" action="/availableCars/{{a.id}}">
+		<tr>
+			<td><img src="/uploads/{{a.imageFilePath}}" width="154" height="98" class="img-responsive"></td>
+			<td>{{a.make}} - {{a.modelName}} - {{a.modelYear}}</td>
+			<td>{% for rate in r %}
+					{% if a.id==rate.carID %}
+					<p>rate by day:{{rate.byDay}}$</p>
+					<p>rate by kilometer:{{rate.byKilometer}}$</p>
+					{% endif %}
+				{% endfor %}
+
+			</td>
+			<td><input class="btn btn-md btn-success" style="background: #a6ca63;" type="submit" name="booking" value="book"></td>
+		</tr>
+		</form>
+
+
+
+{% endfor %}</table>{% endif %}
+</section>
+{% endblock body %}

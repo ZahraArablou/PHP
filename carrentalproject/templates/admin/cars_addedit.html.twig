@@ -1,0 +1,52 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}Car Edit{% endblock%}
+{% block bodytitle %}Car Information{% endblock %}
+{% block content %}
+
+<section class="container">
+ <form method="post" enctype="multipart/form-data">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="make">Make</label>
+    <input type="text" {% if(errorList['make']) %} class="form-control is-invalid" {% else %} class="form-control"{% endif %} class="form-control is-invalid" id="make" name="make" value ="{{ car.make }}">
+    <div class="invalid-feedback">{% if(errorList['make']) %} {{errorList['make']}} {% endif %}</div>
+    </div>
+    <div class="form-group col-md-6">
+    <label for="modelName">Model</label>
+    <input type="text" {% if(errorList['modelName']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="modelName" id="modelName" value ="{{ car.modelName }}">
+    <div class="invalid-feedback">{% if(errorList['modelName']) %} {{errorList['modelName']}} {% endif %}</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="modelYear">Model Year</label>
+      <input type="modelyear" {% if(errorList['modelYear']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="modelYear" id="modelYear" value ="{{ car.modelYear }}">
+      <div class="invalid-feedback">{% if(errorList['modelYear']) %} {{errorList['modelYear']}} {% endif %}</div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="availability">Availability</label>
+      <select name="availability" id="availability" {% if(errorList['availability']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}>
+        <option value = "0"  {% if car.availability == '' %}selected{% endif %}>Choose...</option>
+        <option value = "available"  {% if car.availability == 'available' %}selected{% endif %}>Available</option>
+        <option value = "repair"  {% if car.availability == 'repair' %}selected{% endif %}>repair</option>
+        <option value = "retired"  {% if car.availability == 'retired' %}selected{% endif %}>retired</option>
+        <option value = "booked"  {% if car.availability == 'booked' %}selected{% endif %}>booked</option>
+      </select>
+      <div class="invalid-feedback">{% if(errorList['availability']) %} {{errorList['availability']}} {% endif %}</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+    <label for="imageFilePath">Image</label>
+    <input type="file" {% if(errorList['imageFilePath']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  name="imageFilePath" id="imageFilePath" value ="{{ car.imageFilePath }}">
+    <div class="invalid-feedback">{% if(errorList['imageFilePath']) %} {{errorList['imageFilePath']}} {% endif %}</div>
+</div>
+</div>
+
+
+  <button type="submit" class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;">{% if op == 'edit' %} Update Car Information {% else %} Submit Car Information {% endif %} </button>
+</form>
+</section>
+
+
+{% endblock %}

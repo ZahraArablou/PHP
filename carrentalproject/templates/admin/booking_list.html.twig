@@ -1,0 +1,60 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}Booking List{% endblock %}
+
+{% block head %}
+    
+    <script>
+        var currPageNo = {{pageNo}};
+        var maxPages = {{maxPages}};
+    </script>
+    <script src="/js/admin_pagination.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+                console.log("Ajax error occured on " + settings.url);
+                alert("Ajax error occured");
+            });
+
+            loadPage({{pageNo}}, true, '/admin/booking/list/','/admin/booking/list/singlepage/');
+        });
+    </script>
+    
+{% endblock %}
+
+
+{% block table %}
+    <h2>bookings</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>User Id</th>
+                    <th>Car Id</th>
+                    <th>Rate Type</th>
+                    <th>Rate Value</th>
+                    <th>Reservation Date</th>
+                    <th>pickup Date</th>
+                    <th>return Date</th>
+                    <th>Payment Amount</th>
+                    <th>booking Status</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                                      
+            </tbody>
+        </table>
+
+        <div  style="font-size:22px" align="center" class="pageNavigation">
+            <br>
+            <span id="pageNavPrev" onclick="loadPage(currPageNo-1, true, '/admin/booking/list/','/admin/booking/list/singlepage/' )">Previous</span>
+            {% for no in 1 .. maxPages %}
+                <span id="pageNav{{no}}" onclick="loadPage({{no}}, true, '/admin/booking/list/','/admin/booking/list/singlepage/')">{{no}}</span>
+            {% endfor %}
+            <span  id="pageNavNext" onclick="loadPage(currPageNo+1, true, '/admin/booking/list/','/admin/booking/list/singlepage/')">Next</span>
+        </div>
+
+    </div>
+
+{% endblock %}

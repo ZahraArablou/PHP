@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+{% block title %}User Edit{% endblock%}
+{% block bodytitle %}Create New Account{% endblock %}
+{% block greensectiontitle %}
+<h2>Registration</h2>
+{% endblock greensectiontitle %}
+{% block body %}
+
+<section class="container">
+ <form method="post">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="firstName">First Name</label>
+    <input type="text" {% if(errorList['firstName']) %} class="form-control is-invalid" {% else %} class="form-control"{% endif %} class="form-control is-invalid" id="firstName" name="firstName" value ="{{ user.firstName }}">
+    <div class="invalid-feedback">{% if(errorList['firstName']) %} {{errorList['firstName']}} {% endif %}</div>
+    </div>
+    <div class="form-group col-md-6">
+    <label for="lastName">Last Name</label>
+    <input type="text" {% if(errorList['firstName']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="lastName" id="lastName" value ="{{ user.lastName }}">
+    <div class="invalid-feedback">{% if(errorList['lastName']) %} {{errorList['lastName']}} {% endif %}</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" {% if(errorList['email']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="email" id="email" value ="{{ user.email }}">
+      <div class="invalid-feedback">{% if(errorList['email']) %} {{errorList['email']}} {% endif %}</div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" {% if(errorList['phoneNumber']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="phoneNumber"  name="phoneNumber" value ="{{ user.phoneNumber }}">
+      <div class="invalid-feedback">{% if(errorList['phoneNumber']) %} {{errorList['phoneNumber']}} {% endif %}</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="gender">Gender</label>
+      <select name="gender" id="gender" {% if(errorList['gender']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}>
+        <option value = "0"  {% if user.gender == '' %}selected{% endif %}>Choose...</option>
+        <option value = "female"  {% if user.gender == 'female' %}selected{% endif %}>female</option>
+        <option value = "male"  {% if user.gender == 'male' %}selected{% endif %}>male</option>
+        <option value = "others"  {% if user.gender == 'others' %}selected{% endif %}>other</option>
+      </select>
+	  </div>
+      <div class="invalid-feedback">{% if(errorList['gender']) %} {{errorList['gender']}} {% endif %}</div>
+        <div class="form-group col-md-6">
+       <label for="username">User Name</label>
+      <input type="text" {% if(errorList['username']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} id="username"  name="username"  value ="{{ user.username }}">
+      <div class="invalid-feedback">{% if(errorList['username']) %} {{errorList['username']}} {% endif %}</div>
+    </div>
+    </div>
+ 
+<div class="form-row">
+    <div class="form-group col-md-6">
+     <label for="pass1">Password</label>
+      <input type="password" {% if(errorList['password']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %} name="pass1" id="pass1">
+      {% if op == 'edit' %}
+      <small id="emailHelp" class="form-text text-muted">only provide password if you want to change it for this user</small>
+      {% endif %}
+      <div class="invalid-feedback">{% if(errorList['password']) %} {{errorList['password']}} {% endif %}</div> 
+    </div>
+    
+    <div class="form-group col-md-6">
+      <label for="pass2">Repeated Password</label>
+      <input type="password" {% if(errorList['passwordmatch']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="pass2"  name="pass2">
+      {% if op == 'edit' %}
+      <small id="emailHelp" class="form-text text-muted">only provide password if you want to change it for this user</small>
+      {% endif %}
+      <div class="invalid-feedback">{% if(errorList['passwordmatch']) %} {{errorList['passwordmatch']}} {% endif %}</div> 
+       </div>
+  </div>
+ <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text"  {% if(errorList['street']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="street" name="street" value ="{{ user.street }}">
+          <div class="invalid-feedback">{% if(errorList['street']) %} {{errorList['street']}} {% endif %}</div> 
+
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">City</label>
+      <input type="text" {% if(errorList['city']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="city" name="city" value ="{{ user.city }}">
+            <div class="invalid-feedback">{% if(errorList['city']) %} {{errorList['city']}} {% endif %}</div> 
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="province">Province</label>
+      <input type="text"  {% if(errorList['province']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="province" name="province" value ="{{ user.province }}">
+      <div class="invalid-feedback">{% if(errorList['province']) %} {{errorList['province']}} {% endif %}</div> 
+
+    </div>
+    <div class="form-group col-md-2">
+      <label for="postalCode">Postal Code</label>
+      <input type="text"  {% if(errorList['postalCode']) %} class="form-control is-invalid" {% else %}class="form-control"{% endif %}  id="postalCode"  name="postalCode"  value ="{{ user.postalCode }}">
+      <div class="invalid-feedback">{% if(errorList['postalCode']) %} {{errorList['postalCode']}} {% endif %}</div> 
+
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;">{% if op == 'edit' %} Update User Information {% else %} Submit User Information {% endif %} </button>
+</form>
+</section>
+
+
+{% endblock %}

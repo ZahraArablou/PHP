@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="/styles.css"/>
+            <title>{% block title %}{% endblock %} - Auctions</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="centeredContent">
+          {% if flashMessage %}
+          <div class="flashMessage">{{flashMessage}}</div>{% endif %}{% block content %}{% endblock %}
+        <div  id="center1" id="footer">
+            {% block footer %}
+                &copy; Copyright 2011 by <a href="http://domain.invalid/">you</a>.
+            {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

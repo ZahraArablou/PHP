@@ -1,0 +1,28 @@
+{% extends "admin/masterAdmin.html.twig" %}
+
+{% block head %}
+    <script>
+        var secsLeft = 5;
+        setInterval(function() {
+            document.getElementById("countdown").innerHTML = secsLeft + "";
+            secsLeft--;
+            if (secsLeft < 0) {
+                window.location.href = "/admin/{{object}}/list"; // destination
+            }
+        }, 1000);
+    </script>
+{% endblock %}
+
+{% block title %}Fail Operation{% endblock %}
+
+{% block content %}
+<div class="container" align="center">
+
+    {% block errorMessage%}
+    <p style="color:red"> {{message}}</p>
+    {% endblock %}
+
+    <p><a class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;" href="/admin/{{object}}/list">Click here to continue</a></p>
+    <p>You will be automatically redirected in <span id="countdown">5</span> seconds.</p>
+</div>
+{% endblock %}

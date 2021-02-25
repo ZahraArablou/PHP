@@ -1,0 +1,119 @@
+{% extends "base.html.twig" %}
+{% block title %}User Edit{% endblock%}
+{% block bodytitle %}User Information
+{% endblock %}
+{% block greensectiontitle %}
+<h2>Update User Information</h2>
+{% endblock greensectiontitle %}
+{% block body %}
+
+	<section class="container">
+		<form method="post">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="firstName">First Name</label>
+					<input type="text" {% if(errorList['firstName']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} class="form-control is-invalid" id="firstName" name="firstName" value="{{ user.firstName }}">
+					<div class="invalid-feedback">
+						{% if(errorList['firstName']) %}
+							{{errorList['firstName']}}
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="lastName">Last Name</label>
+					<input type="text" {% if(errorList['firstName']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} name="lastName" id="lastName" value="{{ user.lastName }}">
+					<div class="invalid-feedback">
+						{% if(errorList['lastName']) %}
+							{{errorList['lastName']}}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">Email</label>
+					<input type="email" {% if(errorList['email']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} name="email" id="email" value="{{ user.email }}">
+					<div class="invalid-feedback">
+						{% if(errorList['email']) %}
+							{{errorList['email']}}
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="phoneNumber">Phone Number</label>
+					<input type="text" {% if(errorList['phoneNumber']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} id="phoneNumber" name="phoneNumber" value="{{ user.phoneNumber }}">
+					<div class="invalid-feedback">
+						{% if(errorList['phoneNumber']) %}
+							{{errorList['phoneNumber']}}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="gender">Gender</label>
+					<select name="gender" id="gender" {% if(errorList['gender']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %}>
+						<option value="0" {% if user.gender == '' %} selected {% endif %}>Choose...</option>
+						<option value="female" {% if user.gender == 'female' %} selected {% endif %}>female</option>
+						<option value="male" {% if user.gender == 'male' %} selected {% endif %}>male</option>
+						<option value="others" {% if user.gender == 'others' %} selected {% endif %}>other</option>
+					</select>
+					<div class="invalid-feedback">
+						{% if(errorList['gender']) %}
+							{{errorList['gender']}}
+						{% endif %}
+					</div>
+
+
+				</div>
+				<div class="form-group col-md-6">
+					<label for="street">Street</label>
+					<input type="text" {% if(errorList['street']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} id="street" name="street" value="{{ user.street }}">
+					<div class="invalid-feedback">
+						{% if(errorList['street']) %}
+							{{errorList['street']}}
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="city">City</label>
+					<input type="text" {% if(errorList['city']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} id="city" name="city" value="{{ user.city }}">
+					<div class="invalid-feedback">
+						{% if(errorList['city']) %}
+							{{errorList['city']}}
+						{% endif %}
+					</div>
+
+				</div>
+				<div class="form-group col-md-4">
+					<label for="province">Province</label>
+					<input type="text" {% if(errorList['province']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} id="province" name="province" value="{{ user.province }}">
+					<div class="invalid-feedback">
+						{% if(errorList['province']) %}
+							{{errorList['province']}}
+						{% endif %}
+					</div>
+
+				</div>
+				<div class="form-group col-md-2">
+					<label for="postalCode">Postal Code</label>
+					<input type="text" {% if(errorList['postalCode']) %} class="form-control is-invalid" {% else %} class="form-control" {% endif %} id="postalCode" name="postalCode" value="{{ user.postalCode }}">
+					<div class="invalid-feedback">
+						{% if(errorList['postalCode']) %}
+							{{errorList['postalCode']}}
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success btn-lg btn-block" style="background: #a6ca63;">Update </button>
+		</form>
+	</section>
+
+
+{% endblock %}

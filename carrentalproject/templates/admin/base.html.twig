@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}{% endblock %}  - Car Rental</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link href="/styles/elegant-icons-style.css" rel="stylesheet" />
+  <link href="/styles/styleAdmin.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- container section start -->
+  <section id="container" class="">
+    <!--header start-->
+    <header id="header" class="fixed-top">
+    <div class="container d-flex">
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="{{path_for('/')}}"><img src = "/images/logo.png" alt="Logo" class="img-fluid"/></a></h1>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li {% if current == 'home' %}class="active"{% endif %} ><a href="{{path_for('/')}}">Home</a></li>
+          <li><a href="#">Cars</a></li>
+          <li><a href="#">Reservations</a></li>
+          <li {% if current == 'contact' %}class="active"{% endif %}><a href="{{path_for('/contact')}}">Contact</a></li>
+          <li class="get-started"><a href="#">Sign In</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+          </li>
+          <li>
+            <a class="" href="{{path_for('/admin/userslist')}}">
+                          <i class="icon_table"></i>
+                          <span>Users Management</span>
+                      </a>
+          </li>
+          <li>
+            <a class="" href="#">
+                          <i class="icon_table"></i>
+                          <span>Cars Management</span>
+                      </a>
+          </li>
+          <li>
+            <a class="" href="#">
+                          <i class="icon_table"></i>
+                          <span>Confirm Requests</span>
+                      </a>
+          </li>
+          <li>
+            <a class="" href="#">
+                          <i class="icon_piechart"></i>
+                          <span>Reports</span>
+                      </a>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header">{% block bodytitle %}{% endblock %}</h3>
+          </div>
+        </div>
+        <!-- page start-->
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+                {% block body %}{% endblock %}
+            </section>
+          </div>
+        </div>
+        <!-- page end-->
+      </section>
+    </section>
+    <!--main content end-->
+  </section>
+  <!-- javascripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>

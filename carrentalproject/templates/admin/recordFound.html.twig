@@ -1,0 +1,13 @@
+{% extends "admin/masterAdmin.html.twig" %}
+
+{% block title %}Record found{% endblock %}
+{% block content %}
+<div class="container" align="center">
+
+    <h4>Record found!</h4>
+    <p>You already defined a rate for this car click the link below for Edit tha rates</p>
+    <a class="btn btn-success btn-lg"  style="background: #a6ca63;" href="/admin/rate/edit/{{id}}">Edit previous rate </a>
+    <a class="btn btn-danger btn-lg"   href="/admin/rate/delete/{{id}}">Delete previous rate </a>
+</div>
+
+{% endblock %}

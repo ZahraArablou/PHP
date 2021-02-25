@@ -1,0 +1,60 @@
+{% extends "admin/masterAdmin.html.twig" %}
+{% block title %}Cars List{% endblock %}
+
+{% block head %}
+    
+    <script>
+        var currPageNo = {{pageNo}};
+        var maxPages = {{maxPages}};
+    </script>
+    <script src="/js/admin_pagination.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+                console.log("Ajax error occured on " + settings.url);
+                alert("Ajax error occured");
+            });
+
+            loadPage({{pageNo}}, true, '/admin/car/list/','/admin/car/list/singlepage/');
+        });
+    </script>
+    
+{% endblock %}
+
+{% block buttonAdd %}
+    <a href="/admin/car/add" class="btn btn-success btn-lg "><i class="fas fa-plus"></i></a>
+{% endblock %}
+
+{% block table %}
+    <h2>Cars</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Model Year</th>
+                    <th>Image</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                    <th>Rate</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                                      
+            </tbody>
+        </table>
+
+        <div  style="font-size:22px" align="center"  class="pageNavigation">
+            <br>
+            <span id="pageNavPrev" onclick="loadPage(currPageNo-1, true, '/admin/car/list/','/admin/car/list/singlepage/' )">Previous</span>
+            {% for no in 1 .. maxPages %}
+                <span id="pageNav{{no}}" onclick="loadPage({{no}}, true, '/admin/car/list/','/admin/car/list/singlepage/')">{{no}}</span>
+            {% endfor %}
+            <span  id="pageNavNext" onclick="loadPage(currPageNo+1, true, '/admin/car/list/','/admin/car/list/singlepage/')">Next</span>
+        </div>
+
+    </div>
+
+{% endblock %}

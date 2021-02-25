@@ -1,0 +1,29 @@
+{% extends "admin/masterAdmin.html.twig" %}
+
+{% block head %}
+    <script>
+        // Example of redirection with visual countdown
+        var secsLeft = 5;
+        setInterval(function() {
+            document.getElementById("countdown").innerHTML = secsLeft + "";
+            secsLeft--;
+            if (secsLeft < 0) {
+                window.location.href = "/admin/{{object}}/list"; // destination
+            }
+        }, 1000);
+    </script>
+{% endblock %}
+
+{% block title %}Operation successful{% endblock %}
+
+{% block content %}
+<div class="container" align="center">
+
+    {% if op %}
+        <p>{{[object, " record ", op, "ed", " ", "successfully"] | join("")}}</p>
+    {% endif %}
+
+    <p><a class="btn btn-success btn-lg btn-block"  style="background: #a6ca63;" href="/admin/{{object}}/list">Click here to continue</a></p>
+    <p>You will be automatically redirected in <span id="countdown">5</span> seconds.</p>
+</div>
+{% endblock %}

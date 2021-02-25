@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}user update successful
+{% endblock %}
+
+{% block head %}
+	<script>
+		// redirect with JavaScript
+setTimeout(function () {
+window.location.href = "/"; // destination
+}, 5000); // will call the function after 5 secs.
+	</script>
+{% endblock %}
+
+{% block body %}
+	<p>User information updated successfully!</p>
+	<!--<h3>Pending...<h3>
+	<div>Wait for admin to accept the request then you can do the payment</div>
+	<div>To check your status and make a payment check <a href="#"> user history</a><div> -->
+
+	<p>
+		<a href="/">Click to continue</a>. You will be automatically redirected in 5 seconds.</p>
+{% endblock %}

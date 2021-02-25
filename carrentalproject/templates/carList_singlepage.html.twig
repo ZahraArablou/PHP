@@ -1,0 +1,27 @@
+{% if carList %}
+    <section id="blog" class="blog" >
+      <div class="container">
+        <div class="row">
+    {% for car in carList %}
+        <div class="col-lg-4  col-md-6 d-flex align-items-stretch">
+            <article class="entry">
+              <div class="entry-img">
+              <img src="/uploads/{{car.imageFilePath}}" alt="" width="100%" height="200px" class="img-responsive" "/>
+              </div>
+              <h2 class="entry-title">{{car.make}}</h2>
+              <h2 class="entry-title">{{car.modelName}}</h2>
+
+              <div class="entry-content">
+            
+                <p>{{car.modelYear}}</p>
+                <p>{{car.availability}}</p>
+              </div>
+            </article>
+        </div>
+    {% endfor %} 
+            </div>
+      </div>
+    </section>           
+{% endif %}     
+
+
